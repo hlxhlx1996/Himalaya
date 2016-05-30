@@ -1,0 +1,87 @@
+<style type="text/css">
+	blockquote.barT{
+		border-left: 5px solid #81d4fa;
+	}
+</style>
+<div ng-Controller="PostDetail" class="container-fluid ">
+	<h2>POST PAGE</h2>
+	<div class="row">
+		<div class="col s12">
+			<div class="card small">
+				<div class="card-image  waves-effect waves-block waves-light">
+					<img src="http://i.telegraph.co.uk/multimedia/archive/02432/zuckerberg_2432876b.jpg" >
+					<span class="card-title" ng-bind='postDetail.title'></span>
+				</div>
+				<div class="card-content">
+					<p ng-bind='postDetail.content'></p>
+				</div>
+				<div class="card-action">
+					<a href="#">#MARK</a>
+					<a href="#">#fb</a>
+					<a href="#">#future</a>
+					<div class="right">
+						<span>👍{{postDetail.up}}  </span>
+						<span>👍{{postDetail.down}}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col s8">
+			<p>Click here if you agree</p>
+			<a class="btn-floating btn-large waves-effect waves-light blue" ng-click='up(true)'><i class="material-icons">add</i></a>
+		</div>
+		<div class="col s2">
+			<p>Click here if you disagree</p>
+			<a class="btn-floating btn-large waves-effect waves-lightfalsee" ng-click='up(false)'><i class="material-icons">add</i></a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col s11">
+			<div class="title">
+				<h5>Comments</h5>
+			</div>
+			<div class="row">
+				<div class="col s6 green lighten-5" id="addCom">
+					<form >
+						<h4>Add New Comment:</h4> 
+						<textarea ng-model="comment.text" class="form-control materialize-textarea"></textarea>
+						<br><br>
+						<p>
+							<input class="with-gap" ng-model="comment.support" value="true" name="group1" type="radio" id="test1" />
+							<label for="test1">👍</label>
+						</p>
+						<p>
+							<input class="with-gap" ng-model="comment.support" value="false" name="group1" type="radio" id="test2" >
+							<label for="test2">👎</label>
+						</p>	
+						<button class="btn  light-green darken-1" ng-click="addComment()" >Add</button>
+					</form>
+				</div>
+			</div>	
+
+			<blockquote class="card-panel grey small lighten-5 z-depth-1 " ng-class="{true: 'barT'}[comment.support]" ng-repeat="comment in comments | orderBy:[created_at]">
+					<div class="valign-wrapper">
+					<!-- <div class="barT left" ng-show='comment.support'>
+					</div>
+					<div class="barF left" ng-show='!comment.support'>
+					</div> -->
+					<div class="col s2 ">
+						<img src="http://i.telegraph.co.uk/multimedia/archive/02432/zuckerberg_2432876b.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+						<p class="center">{{comment.author_name}}</p>
+					</div>
+					<div class="col s10">
+						<span class="black-text ">
+							<p>{{comment.text}}</p>
+							<p>{{comment.support}}</p>
+							<span>{{comment.created_at}}</span>
+							<span class="right">{{comment.likes}}</span>
+							<i class="mdi-action-thumb-up btn-floating btn waves-effect waves-light red right" ng-click='likeComment(comment._id,comment.likes)'></i>
+						</span>
+					</div>
+				</div>
+			</blockquote>	
+		</div>
+	</div>
+</div>
