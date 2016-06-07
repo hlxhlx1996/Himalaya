@@ -16,6 +16,15 @@ module.exports = (function() {
 			}
 		})
 	},
+	get_global_cates: function(req, res){
+		Category.find({}, function(err, results){
+			if(err){
+				res.send(err);
+			} else{
+				res.json(results);
+			}
+		})
+	},
 	get_global_posts: function(req, res){
 		Post.find({}, function(err, results){
 			if(err){

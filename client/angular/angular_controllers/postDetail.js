@@ -57,6 +57,12 @@ appointments.controller('PostDetail', function($rootScope,$rootScope,$scope, $ht
 		});
 	}	
 	// <----------------| END || COMMENTS |------------------------->
+	$scope.clickTag= function(tagClicked){
+			$location.path('/debateSubTag/'+tagClicked);
+	};
+	$scope.clickCate= function(cateClicked){//category click can also use this function
+		$location.path('/debateSubCate/'+cateClicked);
+	};
 });
 
 

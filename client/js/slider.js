@@ -1,7 +1,5 @@
  $(document).ready(function(){
- 	$('.carousel').carousel();
-      // Next slide
-    $('.carousel').carousel('next');
+    $('select').material_select();
 // $('.carousel').carousel('next', [3]); // Move next n times.
 // // Previous slide
 // $('.carousel').carousel('prev');

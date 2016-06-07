@@ -3,6 +3,7 @@ var mongoose = require('mongoose'),
 //only one schema for questions with associated answers to these questions
 var UserSchema = new mongoose.Schema({
 	username: String,
+	aboutMe:[{type:String,default:"🗣"}],
 	email: {type: String,default:"⛄️"},
 	password: String,
 	url:String,

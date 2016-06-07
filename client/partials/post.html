@@ -16,13 +16,9 @@
 					<p ng-bind='postDetail.content'></p>
 				</div>
 				<div class="card-action">
-					<a href="#">#MARK</a>
-					<a href="#">#fb</a>
-					<a href="#">#future</a>
-					<div class="right">
-						<span>👍{{postDetail.up}}  </span>
-						<span>👍{{postDetail.down}}</span>
-					</div>
+					<a ng-repeat='tag in postDetail.tags' ng-click='clickTag(tag)' >#{{tag}}</a>
+					<a ng-click='clickCate(postDetail.category)'><i class="mdi-action-stars small"></i>{{postDetail.category}}</a>
+					<span class="right"><i class="mdi-action-thumb-up">{{postDetail.up}}  <i class="mdi-action-thumb-down">{{postDetail.down}}</i></span>
 				</div>
 			</div>
 		</div>

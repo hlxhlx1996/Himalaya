@@ -9,27 +9,24 @@
 			</p>
 			<div class="followInfo">
 				<ul class="collection">
-					<li class="collection-header">
-						<h4>followed users {{userInfo.followed_names.length}}</h4>
-					</li>
-					<li class="collection-item avatar" ng-repeat='name in userInfo.followed_names'>
+					<p>followed users {{followedUsers.length}}</p>
+					<li class="collection-item avatar" ng-repeat='user in followedUsers'>
 						<img src="../img/gd.jpeg" alt="" class="circle">
-						<span class="title">{{name}}</span>
+						<span class="title">{{user.username}}</span>
 						<p>Love ya<br>
 						</p>
 						<a href="#!" class="secondary-content"><i class="mdi-action-grade"></i></a>
 					</li>
 				</ul>
-				
 				<ul class="collection">
-					<li class="collection-header">
-						<h4>following users {{userInfo.following_names.length}}</h4>
-					</li>
-					<li class="collection-item avatar" ng-repeat='name in userInfo.following_names'>
+					<p>following users {{followingUsers.length}}</p>
+					<li class="collection-item avatar" ng-repeat='user in followingUsers'>
 						<img src="../img/gd.jpeg" alt="" class="circle">
-						<span class="title">{{name}}</span>
-						<p>Love ya<br>
-						</p>
+						<div class="col s4">
+							<span class="title">{{user.username}}</span>
+							<p>Love ya<br>
+							</p>
+						</div>
 						<a href="#!" class="secondary-content"><i class="mdi-action-grade"></i></a>
 					</li>
 				</ul>

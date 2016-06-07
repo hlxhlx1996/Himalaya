@@ -6,7 +6,8 @@ appointments.config(function($routeProvider){
 	$routeProvider
 	.when('/',{ templateUrl: 'partials/login.html' })
 	// .when('/',{ templateUrl: 'partials/home.html' })
-	.when('/login',{ templateUrl: 'partials/login.html', resolve: { logincheck: checkLoggedin } })
+	// , resolve: { logincheck: checkLoggedin } ->> for logged in
+	.when('/login',{ templateUrl: 'partials/login.html' })
 	.when('/register',{ templateUrl: 'partials/register.html' })
 	.when('/home',{ templateUrl: 'partials/home.html' })
 	.when('/debate', { templateUrl: "partials/debate.html"})
@@ -17,6 +18,8 @@ appointments.config(function($routeProvider){
 	.when('/add_review/:id', { templateUrl: "partials/add_review.html"})
 	.when('/postDetail', { templateUrl: "partials/post.html"})
 	.when('/userDetail', { templateUrl: "partials/user.html"})
+	.when('/debateSubTag/:tag', { templateUrl: "partials/debateSubTag.html"})
+	.when('/debateSubCate/:cate', { templateUrl: "partials/debateSubCate.html"})
 	.otherwise( { redirectTo: "/" });
 });
 

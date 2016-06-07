@@ -25,6 +25,15 @@ var globalD = require('./../server/controllers/global.js');
     app.get('/get_posts/:id', function(req, res) {
       users.get_posts(req, res);
     });
+    app.get('/getFollow/:id', function(req, res) {
+      users.getFollow(req, res);
+    });
+    app.post('/deletePost/:id', function(req, res) {
+      users.deletePost(req, res);
+    });
+    app.post('/unfollow', function(req, res) {
+      users.unfollow(req.body, res);
+    });
     app.get('/getPostDetail/:id', function(req, res) {
       users.getPostDetail(req, res);
     });
@@ -56,6 +65,15 @@ var globalD = require('./../server/controllers/global.js');
       app.get('/get_global_posts', function(req, res) {
       globalD.get_global_posts(req, res);
     });
+    app.get('/get_global_cates', function(req, res) {
+      globalD.get_global_cates(req, res);
+    });
+    app.get('/getTagInfo/:tag', function(req, res) {
+      users.getTagInfo(req, res);
+    }); 
+    app.get('/getCateInfo/:cate', function(req, res) {
+      users.getCateInfo(req, res);
+    });    
     // <----------------| END || Tags |------------------------->
     app.get('/getUserDetail/:id', function(req, res) {
       users.getUserDetail(req, res);

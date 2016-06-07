@@ -1,0 +1,21 @@
+<div ng-Controller="DebateSubTag" class="container-fluid ">
+<div class="debtate">
+  <h3 ng-bind='info.text'></h3>
+  <div class="col s4 " ng-repeat="post in info.posts | orderBy: ['created_at']">
+    <div class="card">
+      <div class="card-image">
+        <img src="http://i.telegraph.co.uk/multimedia/archive/02432/zuckerberg_2432876b.jpg">
+        <span class="card-title" ng-click='getPostDetail(post._id)'>Debate Title {{post.title}}</span>
+      </div>
+      <div class="card-content">
+        <p ng-bind='post.author_name'></p>
+        <p>One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his he.</p>
+      </div>
+      <div class="card-action">
+        <a ng-repeat='tag in post.tags' ng-click='clickTag(tag)' >#{{tag}}</a>
+        <a ng-click='clickCate(post.category)'><i class="mdi-action-stars small"></i>{{post.category}}</a>
+      </div>
+    </div>
+  </div>
+</div>
+

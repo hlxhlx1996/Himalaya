@@ -9,27 +9,32 @@
 	<p>Type the topic that you are looking for</p>
 	<div class="input-field col s6" id="search">
 		<i class="material-icons prefix">search</i>
-		<input id="search"type="text" class="form-control" placeholder='' ng-model="filter_service">
+		<input id="search"type="text" class="form-control" placeholder='' ng-model="filter_debates">
 
 		<label for='search'>Type here: </label>
 	</div>
 </div>
 <div class="debtate">
-  <div class="col s4 " ng-repeat="post in gPosts | orderBy: ['created_at']">
+  <div class="col s4 " ng-repeat="post in gPosts |filter:filter_debates| orderBy: ['created_at']">
     <div class="card">
       <div class="card-image">
-        <img src="http://i.telegraph.co.uk/multimedia/archive/02432/zuckerberg_2432876b.jpg">
+        <img class="activator" src="http://i.telegraph.co.uk/multimedia/archive/02432/zuckerberg_2432876b.jpg">
         <span class="card-title" ng-click='getPostDetail(post._id)'>Debate Title {{post.title}}</span>
       </div>
       <div class="card-content">
         <p ng-bind='post.author_name'></p>
-        <p>One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his he.</p>
+        <span class="card-title activator grey-text text-darken-4">Card Title <i
+       class="mdi-navigation-more-vert right"></i></span>
+        <p>One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin.</p>
       </div>
       <div class="card-action">
-        <a href="#">#mark</a>
-        <a href="#">#fb</a>
-        <a href="#">#future</a>
+        <a ng-repeat='tag in post.tags' ng-click='clickTag(tag)' >#{{tag}}</a>
+        <a ng-click='clickCate(post.category)'><i class="mdi-action-stars small"></i>{{post.category}}</a>
       </div>
+      <div class="card-reveal">
+       <span class="card-title grey-text text-darken-4">Card Title <i class="mdi-navigation-close right"></i></span>
+       <p>Here is some more information about this product that is only revealed once clicked on.</p>
+     </div>
     </div>
   </div>
 </div>

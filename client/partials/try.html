@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+<link href="//cdn.bootcss.com/materialize/0.97.6/css/materialize.css" rel="stylesheet">
+<!-- <link href='../css/materialize.css' rel='stylesheet' /> -->
+<link href="//cdn.bootcss.com/materialize/0.97.6/css/materialize.css" rel="stylesheet">
+<!-- <link href="//cdn.bootcss.com/materialize/0.97.6/css/materialize.min.css" rel="stylesheet"> -->
+<script src="//cdn.bootcss.com/materialize/0.97.6/js/materialize.js"></script>
+<!-- <script src="//cdn.bootcss.com/materialize/0.97.6/js/materialize.min.js"></script> -->
+	<script src="../js/jquery-2.1.4.min.js"></script>
+	<script src="../js/materialize.js"></script>
+</head>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+
+<p>选择网站:</p>
+
+<select ng-model="selectedSite">
+<option ng-repeat="x in sites" value="{{x.url}}">{{x.site}}</option>
+</select>
+
+<h1>你选择的是: {{selectedSite}}</h1>
+
+</div>
+
+<script>
+// var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+   $scope.sites = [
+	    {site : "Google", url : "http://www.google.com"},
+	    {site : "Runoob", url : "http://www.runoob.com"},
+	    {site : "Taobao", url : "http://www.taobao.com"}
+	];
+});
+</script>
+
+<p>该实例演示了使用 ng-repeat 指令来创建下拉列表，选中的值是一个字符串。</p>
+</body>
+</html>
+
+
+
+
+
+
+
+
+<!-- <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script> -->
+<link href="//cdn.bootcss.com/materialize/0.97.6/css/materialize.css" rel="stylesheet">
+
+<style type="text/css">
+	select{
+		width: 500px;
+		height: 500px;
+		left: 20px;
+		top: 20px;
+		background-color: white;
+		color: black;
+	}
+</style>
+<div ng-Controller="Profile">
+	<h1>Hi {{users.username}} </h1>
+	<div id="profile_page" >
+		<div class="row">
+			<img class="circle col s2" src="{{users.url}}">
+		</div>
+		<div id="basic_info">
+			<h4>Your Basic Info</h4>
+			<p>Email: {{users.email}}</p>
+			<select id="se" material-select ng-options='tag.text for tag in gTags' ng-model='post.tag'>
+				<!-- <option value="" disabled selected>Choose your option</option> -->
+			</select>
+			<div class="followInfo">
+				<ul class="collection">
+					<p>followed users {{users.followed_names.length}}</p>
+					<li class="collection-item avatar" ng-repeat='name in users.followed_names'>
+						<img src="../img/gd.jpeg" alt="" class="circle">
+						<span class="title">{{name}}</span>
+						<p>Love ya<br>
+						</p>
+						<a href="#!" class="secondary-content"><i class="mdi-action-grade"></i></a>
+					</li>
+				</ul>
+				<ul class="collection">
+					<p>following users {{users.following_names.length}}</p>
+					<li class="collection-item avatar" ng-repeat='name in users.following_names'>
+						<img src="../img/gd.jpeg" alt="" class="circle">
+						<span class="title">{{name}}</span>
+						<p>Love ya<br>
+						</p>
+						<a href="#!" class="secondary-content"><i class="mdi-action-grade"></i></a>
+					</li>
+				</ul>
+			</div><!-- END || FOLLOWINFO CLASS -->
+		</div>
+		<div class="follow">
+			<div class="row green lighten-5" id="serviceSearch">
+				<p>Type the user you are looking for</p>
+				<div class="input-field col s6" id="search">
+					<i class="material-icons prefix">search</i>
+					<input id="search"type="text" class="form-control" placeholder='' ng-model="filter_users">			
+					<label for='search'>Type here: </label>
+				</div>
+			</div>
+			<div class="col s4 " ng-repeat="user in gUsers | filter:filter_users | orderBy: ['created_at']">
+				<div class="card">
+					<div class="card-image">
+						<img src="http://i.telegraph.co.uk/multimedia/archive/02432/zuckerberg_2432876b.jpg">
+						<span class="card-title" ng-click='getUserDetail(user._id)'>Hello</span>
+					</div>
+					<div class="card-content">
+						<p>{{user.username}}</p>
+					</div>
+					<div class="card-action">
+						<a href="#">#student</a>
+						<a href="#">#kpop</a>
+						<a href="#">#outing</a>
+						<a href="#">#programming</a>
+					</div>
+				</div>
+			</div>
+		</div>
+<!-- 		<div ng-app="myApp" ng-controller="myCtrl">
+
+<p>选择网站:</p>
+
+<select ng-model="selectedSite">
+<option ng-repeat="x in sites" value="{{x.url}}">{{x.site}}</option>
+</select>
+
+<h1>你选择的是: {{selectedSite}}</h1>
+
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+   $scope.sites = [
+	    {site : "Google", url : "http://www.google.com"},
+	    {site : "Runoob", url : "http://www.runoob.com"},
+	    {site : "Taobao", url : "http://www.taobao.com"}
+	];
+});
+</script>
+
+<p>该实例演示了使用 ng-repeat 指令来创建下拉列表，选中的值是一个字符串。</p> -->
+		<div class="debtate">
+			<div class="row">
+				<div class="col s6 green lighten-5" id="addPost">
+					<form >
+						<h4>Add New Post:</h4> 
+						Title: <input type="text" class="form-control" ng-model="post.title">
+						Tags HERE
+						<p ng-repeat='tag in gTags'>
+							<!-- <input class="with-gap form-control" value="tag.text" type="radio" ng-model='post.tag'>
+							<label for="test1">{{tag.text}}</label> -->
+							<input type="checkbox" value="tag.text" id="test5" />
+							<label for="test5">{{tag.text}}</label>
+						</p>
+		<select ng-model="post.tag">     
+                <option>SELECT ONE PLASE</option> 
+                <option ng-repeat='tag in gTags' value="{{tag.text}}">{{tag.text}}</option>          
+        </select>
+						add cate: <input type="text" class="form-control" ng-model="post.cate">
+						Category: 
+						add tag: <input type="text" class="form-control" ng-model="post.tag">
+						Category: 
+						Content: <textarea ng-model="post.content" class="form-control materialize-textarea" length="200"></textarea><br><br>
+						<button class="btn  light-green darken-1" ng-click="addPost()" >Add</button>
+					</form>
+				</div>
+			</div>
+			<div class="row green lighten-5" id="serviceSearch">
+				<p>Type the post you are looking for</p>
+				<div class="input-field col s6" id="search">
+					<i class="material-icons prefix">search</i>
+					<input id="search"type="text" class="form-control" placeholder='' ng-model="filter_posts">				
+
+					<label for='search'>Type here: </label>
+				</div>
+			</div>
+			<div class="col s4 " ng-repeat="post in posts | filter:filter_posts | orderBy: ['created_at']">
+				<div class="card">
+					<div class="card-image">
+						<img src="http://i.telegraph.co.uk/multimedia/archive/02432/zuckerberg_2432876b.jpg">
+						<span class="card-title" ng-click='getPostDetail(post._id)'>Debate Title {{post.title}}</span>
+					</div>
+					<div class="card-content">
+						<p ng-bind='post.author_name'></p>
+						<p ng-bind='post.content'></p>
+						<p>One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his he.</p>
+					</div>
+					<div class="card-action">
+						<a href="#">#mark</a>
+						<a href="#">#fb</a>
+						<a href="#">#future</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="//api.filepicker.io/v2/filepicker.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('select').material_select();
+	});;
+</script>

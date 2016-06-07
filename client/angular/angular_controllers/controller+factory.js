@@ -64,7 +64,7 @@ appointments.controller('FriendsController', function($http, $scope, $location, 
 				 $rootScope.currentUser=data;
 			});
 
-			$location.path('/your_profile');
+			$location.path('/home');
 		}
 		else {
 			alert('password does not match');
@@ -80,7 +80,7 @@ appointments.controller('FriendsController', function($http, $scope, $location, 
 			if (data) {
 			$rootScope.users = data;
 			$rootScope.currentUser=data;
-			$location.path('/your_profile');
+			$location.path('/home');
 			}
 			//$location.path('/profile', $scope.users);
 

@@ -15,10 +15,19 @@ appointments.factory('ProfileFactory', function($http){
 			callback(posts);
 		});
 	};
-	factory.getPosts = function(id, callback) {
-		$http.get('/get_posts/'+ id).success(function(output){
-			var posts = output.posts;
-			callback(posts);
+	factory.getFollow = function(id, callback) {
+		$http.get('/getFollow/'+ id).success(function(output){
+			callback(output);
+		});
+	};
+	factory.deletePost=function(id,callback){
+		$http.post('/deletePost/'+id).success(function(output){
+			callback(output);
+		});
+	};
+	factory.unfollow=function(unfollowInfo,callback){
+		$http.post('/unfollow',unfollowInfo).success(function(output){
+			callback(output);
 		});
 	};
 	// <----------------| END || POSTS |------------------------->
@@ -72,6 +81,11 @@ appointments.factory('GlobalFactory', function($http){
 			callback(output);
 		});
 	};
+	factory.get_global_cates = function(callback) {
+		$http.get('/get_global_cates').success(function(output){
+			callback(output);
+		});
+	};
 	factory.get_global_users = function(user_id,callback) {
 		$http.get('/get_global_users/'+user_id).success(function(output){
 			callback(output);
@@ -103,5 +117,24 @@ appointments.factory('UserDetailFactory', function($http){
 			callback(output);
 		})
 	}
+	return factory;
+});
+//debate_sub factory
+appointments.factory('DebateSubFactory', function($http){
+	var factory = {};
+	var info;
+	factory.sendTagInfo = function(tagInfo,callback) {
+		info=tagInfo;
+	};
+	factory.getTagInfo = function(tag,callback) {
+		$http.get('/getTagInfo/'+tag).success(function(output){
+			callback(output);
+		});
+	};
+	factory.getCateInfo = function(cate,callback) {
+		$http.get('/getCateInfo/'+cate).success(function(output){
+			callback(output);
+		});
+	};
 	return factory;
 });

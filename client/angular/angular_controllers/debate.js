@@ -1,5 +1,5 @@
 // Profile controller
-appointments.controller('Debate', function($rootScope,$rootScope,$scope, $http, $routeParams, $location, ProfileFactory,PostDetailFactory,UserDetailFactory,GlobalFactory){
+appointments.controller('Debate', function($rootScope,$rootScope,$scope, $http, $routeParams, $location, ProfileFactory,PostDetailFactory,UserDetailFactory,GlobalFactory,DebateSubFactory){
 	user_id = $rootScope.users._id;
 	$scope.gTags=$rootScope.gTags;
 	// <----------------| BEGIN || POSTS |------------------------->
@@ -12,6 +12,12 @@ appointments.controller('Debate', function($rootScope,$rootScope,$scope, $http, 
 				$location.path('/postDetail',post_id);
 			}
 		});
+	}
+	$scope.clickTag= function(tagClicked){
+			$location.path('/debateSubTag/'+tagClicked);
+	}
+	$scope.clickCate= function(cateClicked){//category click can also use this function
+		$location.path('/debateSubCate/'+cateClicked);
 	}
 });
 
