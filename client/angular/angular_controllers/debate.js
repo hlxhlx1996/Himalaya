@@ -19,6 +19,32 @@ appointments.controller('Debate', function($rootScope,$rootScope,$scope, $http, 
 	$scope.clickCate= function(cateClicked){//category click can also use this function
 		$location.path('/debateSubCate/'+cateClicked);
 	}
+	// upload on file select or drop
+    $scope.upload = function (file) {
+        Upload.upload({
+            url: 'upload/url',
+            data: {file: file, 'username': $scope.username}
+        }).then(function (resp) {
+            console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+        }, function (resp) {
+            console.log('Error status: ' + resp.status);
+        }, function (evt) {
+            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+            console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+        });
+    };
+    $scope.uploadFile = function(files) {
+    var fd = new FormData();
+    //Take the first selected file
+    fd.append("file", files[0]);
+
+    $http.post(uploadUrl, fd, {
+        withCredentials: true,
+        headers: {'Content-Type': undefined },
+        transformRequest: angular.identity
+    });
+
+	};
 });
 
 

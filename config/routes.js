@@ -19,7 +19,7 @@ var globalD = require('./../server/controllers/global.js');
     // Alex______
     // <----------------| BEGIN || POSTS |------------------------->
     app.post('/add_post', function(req, res) {
-      console.log("add post in route");
+      // console.log("add post in route");
       users.add_post(req.body, res);
     });
     app.get('/get_posts/:id', function(req, res) {
@@ -27,6 +27,9 @@ var globalD = require('./../server/controllers/global.js');
     });
     app.get('/getFollow/:id', function(req, res) {
       users.getFollow(req, res);
+    });
+    app.get('/getNotifications/:id', function(req, res) {
+      users.getNotifications(req, res);
     });
     app.post('/deletePost/:id', function(req, res) {
       users.deletePost(req, res);
@@ -38,7 +41,7 @@ var globalD = require('./../server/controllers/global.js');
       users.getPostDetail(req, res);
     });
     app.post('/up', function(req, res) {
-      console.log("update support in route");
+      // console.log("update support in route");
       users.up(req.body, res);
     });
     // <----------------| END || POSTS |------------------------->

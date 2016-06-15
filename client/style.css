@@ -1,3 +1,6 @@
+*{
+	font-style:normal;
+}
 .ng-invalid {
     color: red;
 }

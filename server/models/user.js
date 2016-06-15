@@ -14,6 +14,8 @@ var UserSchema = new mongoose.Schema({
 	followed_names:[{type: String,default:"👰"}],
 	followed:[{type: Schema.Types.ObjectId, ref: 'User'}],
 
-	posts: [{type: Schema.Types.ObjectId, ref: 'Post'}]
+	posts: [{type: Schema.Types.ObjectId, ref: 'Post'}],
+
+	notifications:[{type:Schema.Types.ObjectId,ref:'Notification'}]
 });
 mongoose.model('User', UserSchema);

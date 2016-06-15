@@ -4,6 +4,7 @@ var Post = mongoose.model('Post');
 var Comment = mongoose.model('Comment');
 var Category = mongoose.model('Category');
 var Tag = mongoose.model('Tag');
+var Notification = mongoose.model('Notification');
 
 module.exports = (function() {
 	return{

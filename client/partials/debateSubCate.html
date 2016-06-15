@@ -1,6 +1,6 @@
 <div ng-Controller="DebateSubCate" class="container-fluid ">
 <div class="debtate">
-  <h3 ng-bind='info.text'></h3>
+  <h3>All posts related to Category: {{info.text}}</h3>
   <div class="col s4 " ng-repeat="post in info.posts | orderBy: ['created_at']">
     <div class="card">
       <div class="card-image">

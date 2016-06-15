@@ -1,5 +1,5 @@
 // Profile controller
-appointments.controller('PostDetail', function($rootScope,$rootScope,$scope, $http, $routeParams, $location, ProfileFactory,PostDetailFactory){
+appointments.controller('PostDetail', function(socket,$rootScope,$rootScope,$scope, $http, $routeParams, $location, ProfileFactory,PostDetailFactory){
 	PostDetailFactory.toPostDetail(function(data){
 		$scope.postDetail=data;
 	});
@@ -39,9 +39,11 @@ appointments.controller('PostDetail', function($rootScope,$rootScope,$scope, $ht
 				$scope.postDetail=data;
 			});
 			PostDetailFactory.getComments($scope.postDetail._id, function(data){
+				console.log("update comment",data);
 				$scope.comments = data;
 			});
 		});
+		socket.emit('addComment');
 		$scope.comment={};
 	};
 	$scope.likeComment= function(comment_id,comment_likes){
@@ -54,11 +56,14 @@ appointments.controller('PostDetail', function($rootScope,$rootScope,$scope, $ht
 			PostDetailFactory.getComments($scope.postDetail._id, function(data){
 				$scope.comments = data;
 			});
+			PostDetailFactory.getComments($scope.postDetail._id, function(data){
+				$scope.comments = data;
+			});
 		});
 	}	
 	// <----------------| END || COMMENTS |------------------------->
 	$scope.clickTag= function(tagClicked){
-			$location.path('/debateSubTag/'+tagClicked);
+		$location.path('/debateSubTag/'+tagClicked);
 	};
 	$scope.clickCate= function(cateClicked){//category click can also use this function
 		$location.path('/debateSubCate/'+cateClicked);

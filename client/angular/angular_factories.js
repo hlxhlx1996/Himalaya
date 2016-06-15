@@ -1,7 +1,44 @@
+appointments.factory('socket', function ($rootScope) {
+  var socket = io.connect();
+  return {
+    on: function (eventName, callback) {
+      socket.on(eventName, function () {  
+        var args = arguments;
+        $rootScope.$apply(function () {
+          callback.apply(socket, args);
+        });
+      });
+    },
+    emit: function (eventName, data, callback) {
+      socket.emit(eventName, data, function () {
+        var args = arguments;
+        $rootScope.$apply(function () {
+          if (callback) {
+            callback.apply(socket, args);
+          }
+        });
+      })
+    }
+    // broadcast: function (eventName, data, callback) {
+    // 	socket.broadcast.emit('hi');
+    //   // socket.broadcast.emit(eventName, data, function () {
+    //   //   var args = arguments;
+    //   //   $rootScope.$apply(function () {
+    //   //     if (callback) {
+    //   //       callback.apply(socket, args);
+    //   //     }
+    //   //   });
+    //   // });
+    // }
+  };
+  
+});
 // Profile factory
 appointments.factory('ProfileFactory', function($http){
+
 	var factory = {};
 	var payInfo;
+
 
 	// <----------------| BEGIN || POSTS |------------------------->
 	factory.addPost = function(service, callback) {
@@ -17,6 +54,11 @@ appointments.factory('ProfileFactory', function($http){
 	};
 	factory.getFollow = function(id, callback) {
 		$http.get('/getFollow/'+ id).success(function(output){
+			callback(output);
+		});
+	};
+	factory.getNotifications = function(id, callback) {
+		$http.get('/getNotifications/'+ id).success(function(output){
 			callback(output);
 		});
 	};

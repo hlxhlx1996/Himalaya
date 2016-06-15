@@ -7,18 +7,22 @@
 	<h2>POST PAGE</h2>
 	<div class="row">
 		<div class="col s12">
-			<div class="card small">
+			<div class="card">
 				<div class="card-image  waves-effect waves-block waves-light">
 					<img src="http://i.telegraph.co.uk/multimedia/archive/02432/zuckerberg_2432876b.jpg" >
 					<span class="card-title" ng-bind='postDetail.title'></span>
 				</div>
 				<div class="card-content">
 					<p ng-bind='postDetail.content'></p>
+					<p>One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin.</p>
 				</div>
 				<div class="card-action">
-					<a ng-repeat='tag in postDetail.tags' ng-click='clickTag(tag)' >#{{tag}}</a>
-					<a ng-click='clickCate(postDetail.category)'><i class="mdi-action-stars small"></i>{{postDetail.category}}</a>
-					<span class="right"><i class="mdi-action-thumb-up">{{postDetail.up}}  <i class="mdi-action-thumb-down">{{postDetail.down}}</i></span>
+					<p><a ng-repeat='tag in postDetail.tags' ng-click='clickTag(tag)' >#{{tag}}</a></p>
+					Category: <a ng-click='clickCate(postDetail.category)'>{{postDetail.category}}</a>
+
+					<span class="right">
+					<i class="small material-icons">thumb_up</i>{{postDetail.up}}  
+					<i class="small material-icons">thumb_down</i>{{postDetail.down}}</span>
 				</div>
 			</div>
 		</div>
@@ -26,11 +30,11 @@
 	<div class="row">
 		<div class="col s8">
 			<p>Click here if you agree</p>
-			<a class="btn-floating btn-large waves-effect waves-light blue" ng-click='up(true)'><i class="material-icons">add</i></a>
+			<a class="btn-floating btn-large waves-effect waves-light red" ng-click='up(true)'><i class="small material-icons">add</i></a>
 		</div>
 		<div class="col s2">
 			<p>Click here if you disagree</p>
-			<a class="btn-floating btn-large waves-effect waves-lightfalsee" ng-click='up(false)'><i class="material-icons">add</i></a>
+			<a class="btn-floating btn-large waves-effect waves-light blue" ng-click='up(false)'><i class="small material-icons">add</i></a>
 		</div>
 	</div>
 	<div class="row">
@@ -44,6 +48,7 @@
 						<h4>Add New Comment:</h4> 
 						<textarea ng-model="comment.text" class="form-control materialize-textarea"></textarea>
 						<br><br>
+						Choose your side
 						<p>
 							<input class="with-gap" ng-model="comment.support" value="true" name="group1" type="radio" id="test1" />
 							<label for="test1">👍</label>
@@ -64,16 +69,15 @@
 					<div class="barF left" ng-show='!comment.support'>
 					</div> -->
 					<div class="col s2 ">
-						<img src="http://i.telegraph.co.uk/multimedia/archive/02432/zuckerberg_2432876b.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+						<img src="img/豆子.png" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
 						<p class="center">{{comment.author_name}}</p>
 					</div>
 					<div class="col s10">
 						<span class="black-text ">
 							<p>{{comment.text}}</p>
-							<p>{{comment.support}}</p>
 							<span>{{comment.created_at}}</span>
-							<span class="right">{{comment.likes}}</span>
-							<i class="mdi-action-thumb-up btn-floating btn waves-effect waves-light red right" ng-click='likeComment(comment._id,comment.likes)'></i>
+							<a class="btn-floating waves-effect waves-light red right"><i class="material-icons" ng-click='likeComment(comment._id,comment.likes)'>thumb_up</i></a>
+							<span class="right col s1" >likes: {{comment.likes}}</span>
 						</span>
 					</div>
 				</div>

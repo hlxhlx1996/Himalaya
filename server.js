@@ -217,7 +217,35 @@ app.post('/uploadimg', function(req, res) {
 // set up a static file server that points to the "client" directory
 app.use(express.static(path.join(__dirname, './client')));
 
-app.listen(8000, function() {
+var server=app.listen(8000, function() {
   console.log('cool stuff on: 8000');
 });
+// this gets the socket.io module *new code!* 
+var io = require('socket.io').listen(server)  // notice we pass the server object<br>
+// Whenever a connection event happens (the connection event is built in) run the following code
+io.sockets.on('connection', function (socket) {
+	var currnetUser_id;
+  console.log("WE ARE USING SOCKETS!");
+  console.log("socket",socket.id);
+  socket.on('currnetUser_id',function(data){
+  	console.log("currnetUser_id is",data.user_id);
+  	currnetUser_id=data.user_id;
+  });
+  socket.on('addPost',function(data){
+  	console.log("click in server--------",currnetUser_id);
+  	currnetUser_id= currnetUser_id.toString();
+  	io.emit('addedPost'+data.toUser,data);
+  });
+  socket.on('follow',function(data){
+  	console.log("follow in server--------",currnetUser_id);
+  	io.emit('followed'+data.toUser,data);
+  });
+  socket.on('follow',function(data){
+  	console.log("follow in server--------",currnetUser_id);
+  	io.emit('followed'+data.toUser,data);
+  });
+  //all the socket code goes in here!
+});
+
+
 

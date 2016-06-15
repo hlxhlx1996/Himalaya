@@ -4,6 +4,7 @@ var Post = mongoose.model('Post');
 var Comment = mongoose.model('Comment');
 var Category = mongoose.model('Category');
 var Tag = mongoose.model('Tag');
+var Notification = mongoose.model('Notification');
 
 module.exports = (function() {
 	return{
@@ -76,7 +77,8 @@ module.exports = (function() {
 						        					if(err) {
 						        						console.log('Error');
 						        					} else {
-						        						res.redirect('/');
+						        						console.log("success");
+						        						// res.redirect('/');
 						        					}
 						        				});
 						        			}	
@@ -144,7 +146,8 @@ module.exports = (function() {
 						        					if(err) {
 						        						console.log('Error');
 						        					} else {
-						        						res.redirect('/');
+						        						console.log("success");
+						        						// res.redirect('/');
 						        					}
 						        				});
 						        			}	
@@ -166,21 +169,6 @@ module.exports = (function() {
 		// comment property array of the post document!
 		User.findOne({_id: req.params.id})
 		.populate('posts')
-		.exec(function(err, user) {
-			if(err){
-				res.send(err);
-			} else {
-				res.json(user);
-			}
-		});
-	},
-	getFollow: function(req, res){
-		// just an example route, your routes may look different
-		// the popuate method is what grabs all of the comments using their IDs stored in the 
-		// comment property array of the post document!
-		User.findOne({_id: req.params.id})
-		.populate('followed')
-		.populate('following')
 		.exec(function(err, user) {
 			if(err){
 				res.send(err);
@@ -227,6 +215,70 @@ module.exports = (function() {
 
 		});
 	},
+	getFollow: function(req, res){
+		// just an example route, your routes may look different
+		// the popuate method is what grabs all of the comments using their IDs stored in the 
+		// comment property array of the post document!
+		User.findOne({_id: req.params.id})
+		.populate('followed')
+		.populate('following')
+		.exec(function(err, user) {
+			if(err){
+				res.send(err);
+			} else {
+				res.json(user);
+			}
+		});
+	},
+	getNotifications:function(req,res){
+			// find each person with a last name matching 'Ghost'
+	User.findOne({ _id: req.params.id})
+	.select('notifications')
+	.populate('notifications')
+	.exec(function (err, user) {
+	  if (err) return handleError(err);
+	  res.json(user);
+	  // console.log("get noti",user); 
+	})
+
+
+	},
+	follow: function(req, res){
+		// console.log("follow in users.js",req);
+			var user_id=req.user_id;
+			User.findOne({_id: req.user_id },function(err, user){//update current user
+				user.following_names.push(req.following_name);
+				user.following.push(req.following_user);
+				user.save(function(err){
+					if(err) {
+						console.log('Error');
+					} else {
+						res.json(user);
+					}
+				});
+				User.findOne({_id: req.following_user },function(err, following_user){//update current user
+					var notiInfo={
+						text:"📭 "+user.username+" starts following you!",
+						_author:user_id,
+						about:"following"
+					}
+					var notif= new Notification(notiInfo);
+					console.log("new noti",notif);
+					following_user.notifications.push(notif);
+					following_user.followed_names.push(req.user_name);
+					following_user.followed.push(req.user_id);
+					following_user.save(function(err){
+						notif.save(function(err){
+							if(err) {
+								console.log('Error');
+							} else {
+								// res.json;
+							}
+						})
+					});
+				});
+			});
+		},
 	unfollow:function(req,res){
 		console.log("unfollow user.js",req);
 		User.update({_id:req.currentUser},{$pull:{'following':req.followingUser}},function(err,user){
@@ -284,7 +336,8 @@ module.exports = (function() {
 		        		if(err) {
 		        			console.log('Error');
 		        		} else {
-		        			res.redirect('/');
+		        			console.log("success");
+		        			// res.redirect('/');
 		        		}
 		        	});
 		        });
@@ -326,32 +379,6 @@ module.exports = (function() {
 			}
 		});
 	},
-	follow: function(req, res){
-		// console.log("follow in users.js",req);
-			User.findOne({_id: req.user_id },function(err, user){//update current user
-				console.log("user info ",user);
-				user.following_names.push(req.following_name);
-				user.following.push(req.following_user);
-				user.save(function(err){
-					if(err) {
-						console.log('Error');
-					} else {
-						res.json(user);
-					}
-				});
-			});
-			User.findOne({_id: req.following_user },function(err, user){//update current user
-				user.followed_names.push(req.user_name);
-				user.followed.push(req.user_id);
-				user.save(function(err){
-					if(err) {
-						console.log('Error');
-					} else {
-						res.redirect('/');
-					}
-				});
-			});
-		},
 
 		getTagInfo: function(req, res){
 			Tag.findOne({text: req.params.tag})

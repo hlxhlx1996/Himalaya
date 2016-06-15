@@ -1,11 +1,18 @@
 <div ng-Controller="UserDetail">
-	<h1>Hi I'm {{userInfo.username}} </h1>
+	<h2>{{userInfo.username}}'s profile page </h2>
 	<div id="profile_page" >
 		<div id="basic_info">
 			<h4>🎸{{userInfo.username}}</h4>
 			<p>Email: {{userInfo.email}}</p>
-			<p>Follow
-				<a class="btn-floating waves-effect waves-light red" ng-click="follow()"><i class="Medium mdi-action-favorite-outline"></i></a>
+			<div class="notification">
+				<p>Notifications:</p>
+				<p ng-repeat='noti in notifications'>
+					{{noti.text}} {{noti.created_at}}
+				</p>
+			</div>
+			<p>Click To Follow Him
+				<!-- 				<a class="btn-floating waves-effect waves-light red" ng-click="follow()"><i class="material-icons">favorite-outline</i></a> -->
+				<button id="unfollowBtn" class="btn yellow darken-2" ng-click="follow()">Follow</button>
 			</p>
 			<div class="followInfo">
 				<ul class="collection">
@@ -39,7 +46,7 @@
 	<div class="container-fluid ">	
 		<div class="debtate">
 			<div class="row green lighten-5" id="serviceSearch">
-				<p>Type the post you are looking for</p>
+				<p>Search his post</p>
 				<div class="input-field col s6" id="search">
 					<i class="material-icons prefix">search</i>
 					<input id="search"type="text" class="form-control" placeholder='' ng-model="filter_posts">				
