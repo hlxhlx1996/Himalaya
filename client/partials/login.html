@@ -1,43 +1,29 @@
-<div class="row" ng-controller="FriendsController">
-<!-- 
-{{friends}}
--->
-<h2 class="center">Welcome to 青豆屋
-</h2>
+<div class="row container" ng-controller="ProfileController">
+	<h2 class="center" id="regText2">Welcome to 5C</h2>
+	<div class="row " id="loLogin">
+		<div class="col s5 offsets4">
+		<div class="card">
+				<div class="card-content">
+					<h3 class="center card-title">Login</h3>
+					<div class="input-field">	
 
-<!-- <div class="row" id="fbLogin">
-	<div class="col s12 m8 l3">
-		<h4>Facebook Login</h4>
-	</div>
-	<div class="input-field col s12 m6 l3">
-		<a onclick="Materialize.toast('Welcome Facebook User', 4000)" class="btn waves-effect waves-light blue" href="/auth/facebook" ><i class="material-icons left">account_circle</i>Facebook Login</a>
-	</div>
-	
-</div> -->
-<div class="row center-align">
-<div class="green lighten-2 " id="line"></div>
-</div>
-<div class="row " id="loLogin">
-	<div class="input-field col s12 m8 l3">
-		<h4 class="left">Local login</h4>
-	</div>
+						<i class="material-icons prefix">account_circle</i>
+						<input id='uname' type="text" ng-model="old_friend.username">
+						<label for='uname'>User Name</label>
+					</div>
 
-	<div class="input-field col s12 m6 l3">	
-
-		<i class="material-icons prefix">account_circle</i>
-		<input id='uname' type="text" ng-model="new_friend.username">
-		<label for='uname'>User Name</label>
-	</div>
-
-	<div class="input-field col s12 m6 l3">
-		<i class="material-icons prefix">lock</i>
-		<input id='upass' type="password" ng-model="new_friend.password">
-		<label for='upass'>Password</label>
-	</div>
-
-	<div class="input-field col s12 m6 l3">
-		<button onclick="Materialize.toast('Welcome Local User', 4000)" ng-click="login()" class="btn waves-effect waves-light green" type="submit" name="action">Login
-			<i class="material-icons left">send</i></button>
+					<div class="input-field">
+						<i class="material-icons prefix">lock</i>
+						<input id='upass' type="password" ng-model="old_friend.password">
+						<label for='upass'>Password</label>
+					</div>
+					<div class="input-field">
+						<button onclick="Materialize.toast('Welcome Local User', 4000)" ng-click="login()" class="btn waves-effect waves-light green" type="submit" name="action">Login
+							<i class="material-icons left">send</i>
+						</button>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div><!--ends row -->
 </div><!--ends row friendcontroller -->

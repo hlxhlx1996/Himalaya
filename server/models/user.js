@@ -3,19 +3,21 @@ var mongoose = require('mongoose'),
 //only one schema for questions with associated answers to these questions
 var UserSchema = new mongoose.Schema({
 	username: String,
-	aboutMe:[{type:String,default:"🗣"}],
-	email: {type: String,default:"⛄️"},
+	account: {type: String,default:"⛄️"},//email
 	password: String,
-	url:String,
+	age:Number,
+	annual_income: Number,
+	phone: {type: Number, default: 0000000000},
+	type: {type:Number,default: 0}, //Customer = 0 | Supplier =1 
+ 	rating: {type:Number,default: 0.0},
+
 	created_at: {type: Date, default: Date.now },
-	
-	following_names:[{type: String,default:"⛄️"}],
-	following:[{type: Schema.Types.ObjectId, ref: 'User'}],
-	followed_names:[{type: String,default:"👰"}],
-	followed:[{type: Schema.Types.ObjectId, ref: 'User'}],
 
-	posts: [{type: Schema.Types.ObjectId, ref: 'Post'}],
+	card: [{type: Schema.Types.ObjectId, ref: 'Card'}],
+	address:{type: Schema.Types.ObjectId, ref:'Address'},
+	products :[{type: Schema.Types.ObjectId, ref: 'Product'}],
+	sellings:[{type: Schema.Types.ObjectId, ref: 'Order'}],
+	orderings:[{type: Schema.Types.ObjectId, ref: 'Order'}]
 
-	notifications:[{type:Schema.Types.ObjectId,ref:'Notification'}]
 });
 mongoose.model('User', UserSchema);

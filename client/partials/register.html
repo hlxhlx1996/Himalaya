@@ -1,52 +1,65 @@
-<div ng-controller="FriendsController">
 
-<h3 class="center">Register
-</h3>
+<div ng-controller="ProfileController">
 
-<div class='row'>
+	<h3 class="center" id="regText">Register</h3>
 
-      <div class="input-field col s6">
-	<i class="material-icons prefix">account_circle</i>
-	<label for='uname'>username</label>
-	<input placeholder="username" id='uname' type="text" ng-model="new_friend.username">
-	      </div>
+	<div class='row white-text'>
 
-   <div class="input-field col s6">
-   	<i class="material-icons prefix">email</i>
-	<label for='uemail'>email</label>
-	<input placeholder="email" id='unemail' type="text" ng-model="new_friend.email">
-</div>
+		<div class="input-field col s6">
+			<i class="material-icons prefix">account_circle</i>
+			<input class="white-text" placeholder="username" id='uname' type="text" ng-model="new_friend.username">
+		</div>
 
-   <div class="input-field col s6">
-   	<i class="material-icons prefix">domain</i>
-	<label for='uaddress'>address</label>
-	<input placeholder="address" id='uaddress' type="text" ng-model="new_friend.address"></div>
+		<div class="input-field col s6">
+			<i class="material-icons prefix">email</i>
+			<input class="white-text" placeholder="email" id='unemail' type="text" ng-model="new_friend.account">
+		</div>
 
-   <div class="input-field col s6">
-   	<i class="material-icons prefix">contact_phone</i>
-	<label for='uphone'>phone number</label>
-	<input placeholder="phone number" id='uphone' type="text" ng-model="new_friend.number">
-</div>
-
-   <div class="input-field col s6">
-	<i class="material-icons prefix">lock</i>
-	<label for='upass'>password</label>
-	<input placeholder="password" id='upass' type="password" ng-model="new_friend.password">
-</div>
-
-   <div class="input-field col s6">
-	<i class="material-icons prefix">lock</i>
-	<label for='upass'>confirm password</label>
-	<input placeholder="confirm password" id='upass' type="password" ng-model="new_friend.password2">
-</div>
-
-   <div class="input-field col s6">
-	<button ng-click="register()" class="btn waves-effect waves-light green" type="submit" name="action">Register
-	<i class="material-icons left">send</i></button>
-</div>
-
-</div>
+		<div class="input-field col s6">
+			<i class="material-icons prefix">contact_phone</i>
+			<input class="white-text" placeholder="phone number" id='uphone' type="text" ng-model="new_friend.phone">
+		</div>
+		<div class="input-field col s6">
+			<i class="material-icons prefix">perm_identity</i>
+			<input class="white-text" placeholder="age" id='utype' type="text" ng-model="new_friend.age">
+		</div>
 
 
+		<div class="input-field col s6">
+			<i class="material-icons prefix">lock</i>
+			<input class="white-text" placeholder="password" id='upass1' type="password" ng-model="new_friend.password">
+		</div>
 
-<div>	 
+		<div class="input-field col s6">
+			<i class="material-icons prefix">lock</i>
+			<input class="white-text" placeholder="confirm password" id='upass2' type="password" ng-model="new_friend.password2">
+		</div>
+
+		<div class="input-field col s6">
+			<button onclick="Materialize.toast('Welcome New Friend', 4000)" ng-click="register()" class="btn waves-effect waves-light green" type="submit" name="action">Register
+				<i class="material-icons left">send</i></button>
+			</div>
+		</div>
+		<div class="row">
+			<div>
+				<table class=" highlight">
+					<thead>
+						<th>Username</th>
+						<th>Account</th>
+						<th>Rating</th>
+						<th>Type</th>
+					</thead>
+					<tbody>
+						<tr ng-repeat = " user in all_users | orderBy:['-created_at']">
+							<td>
+								<p ng-bind ='user.username'></p>
+							</td>
+							<td><p ng-bind ='user.account'></p></td>
+							<td><p ng-bind ='user.rating'></p></td>
+							<td><p ng-bind ='user.type'></p></td>
+						</tr> 
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>		

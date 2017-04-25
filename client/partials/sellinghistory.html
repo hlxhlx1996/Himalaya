@@ -1,0 +1,29 @@
+<div id="sellingHistory" ng-controller="MyPageController" class="container">
+	<h3>Selling History</h3>
+	<div class="row">
+		<div class="col s12 m9">
+			<div class="card blue-grey">
+				<div class="card-content white-text">
+					<div>
+						<table class=" highlight">
+							<thead>
+								<th>Product Name</th>
+								<th>Quantity</th>
+								<th>Customer</th>
+								<th>Status</th>
+							</thead>
+							<tbody>
+								<tr ng-repeat = " product in sellings  | orderBy:['-created_at']">
+									<td><p ng-bind ='product.pname'></p></td>
+									<td><p ng-bind ='product.quantity'></p></td>
+									<td><p ng-bind ='product.customer'></p></td>
+									<td><p ng-bind ='product.status'></p></td>
+								</tr> 
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
