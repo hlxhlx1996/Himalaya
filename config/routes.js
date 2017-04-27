@@ -24,18 +24,37 @@ var orders = require('./../server/controllers/OrderServerController.js');
     app.post('/add_product',function(req,res){
       products.add_product(req,res);
     })
+
+    app.post('/add_to_product_bidding_list',function(req,res){
+      products.add_to_product_bidding_list(req,res);
+    })
+    
     app.get('/get_all_products_by_user/:id',function(req,res){
       products.get_all_products_by_user(req,res);
     })
     app.get('/get_all_products',function(req,res){
       products.get_all_products(req,res);
     })
+     app.get('/get_all_category',function(req,res){
+      products.get_all_category(req,res);
+     })
+     app.post('/rate_product',function(req,res){
+      products.rate_product(req,res);
+     })
 
     // <----------------| BEGIN || ORDERS |------------------------->
      app.post('/add_order',function(req,res){
       orders.add_order(req,res);
     })
+     app.post('/add_bid_order',function(req,res){
+      orders.add_order(req,res);
+      products.bid_sold(req,res);
+    })
      app.get('/get_order_by_user/:id',function(req,res){
       orders.get_order_by_user(req,res);
      })
+     app.post('/completeOrder/:id',function(req,res){
+      orders.completeOrder(req,res);
+     })
+
   }

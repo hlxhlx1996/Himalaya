@@ -2,7 +2,7 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
 var OrderSchema = new mongoose.Schema({
-	status:{type:String, enum: ['placed','paid', 'delivered','complete'],default:'placed'},
+	status:{type:String, enum: ['placed','paid', 'delivered','complete','failed'],default:'placed'},
 
 	customer:{type: Schema.Types.ObjectId, ref:'User'},
 	cname:String,
@@ -15,7 +15,8 @@ var OrderSchema = new mongoose.Schema({
 		quantity:Number
 	}],
 	coupon:{type: Schema.Types.ObjectId, ref:'Coupon'},
-	total_price:Number,
+	coupon_discount:Number,
+	total:Number,
 	created_at: {type: Date, default: Date.now }
 });
 mongoose.model('Order', OrderSchema);

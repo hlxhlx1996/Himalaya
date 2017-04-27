@@ -1,5 +1,17 @@
-
-<div ng-controller="ProfileController">
+<style type="text/css">
+	body{
+		background: linear-gradient(rgba(0, 0, 0, 0.50), rgba(0, 0, 0, 0.50)),
+		rgba(0,0,0,0.50) url('../img/raw-food.jpg') no-repeat center;
+		background-size: cover;
+		/*background-image: url("../img/bk.jpg");*/
+		/*opacity: 0.8;*/
+	}
+	#selectS{
+		display: block;
+	}
+	
+</style>
+<div ng-controller="ProfileController" class="container">
 
 	<h3 class="center" id="regText">Register</h3>
 
@@ -12,7 +24,7 @@
 
 		<div class="input-field col s6">
 			<i class="material-icons prefix">email</i>
-			<input class="white-text" placeholder="email" id='unemail' type="text" ng-model="new_friend.account">
+			<input class="white-text validate" placeholder="email" id='unemail' type="email" ng-model="new_friend.account">
 		</div>
 
 		<div class="input-field col s6">
@@ -34,32 +46,54 @@
 			<i class="material-icons prefix">lock</i>
 			<input class="white-text" placeholder="confirm password" id='upass2' type="password" ng-model="new_friend.password2">
 		</div>
+		<div class="input-field col s6">
+			<i class="material-icons prefix">store</i>
+			<input class="white-text" placeholder="street" id='upass2' type="number" ng-model="new_friend.street">
+		</div>
+		<div class="input-field col s6">
+			<i class="material-icons prefix">store</i>
+			<input class="white-text" placeholder="zip cpde" id='upass2' type="number" ng-model="new_friend.zip">
+		</div>
+		<div class="input-field col s6">
+			<i class="material-icons prefix">store</i>
+			<input class="white-text" placeholder="city" id='upass2' type="text" ng-model="new_friend.city">
+		</div>
+		<div class="input-field col s6 ">
+			<i class="material-icons prefix">store</i>
+			<!-- <span class="col s2">State</span> -->
 
+			<select ng-model="new_friend.state" class="black-text col s11 right"  id="selectS">  
+				<option value="" disabled selected>state</option>
+				<option  ng-repeat='state in states' value="{{state}}">{{state}}</option>        
+			</select>
+		</div>
+	</div>
+	<div class="row white-text">
+		<div class="input-field col s6">
+				<i class="material-icons prefix">payment</i>
+				<input placeholder="card number" id='upass2' type="number" ng-model="new_friend.card_number">
+			</div>
+			<div class="input-field col s3">
+				<i class="material-icons prefix">perm_contact_calendar</i>
+				<input  placeholder="exp date month" type="number" ng-model="new_friend.exp_date_m">
+			</div>
+			<div class="input-field col s3">
+				<i class="material-icons prefix">perm_contact_calendar</i>
+				<input  placeholder="exp date year" type="number" ng-model="new_friend.exp_date_y">
+			</div>
+			<div class="input-field col s6">
+				<i class="material-icons prefix">info_outline</i>
+				<input placeholder="name on card" id='upass2' type="text" ng-model="new_friend.name">
+			</div>
+			<div class="input-field col s6">
+				<i class="material-icons prefix">info_outline
+				</i>
+				<input  placeholder="cvv" id='upass2' type="number" ng-model="new_friend.cvv">
+			</div>
 		<div class="input-field col s6">
 			<button onclick="Materialize.toast('Welcome New Friend', 4000)" ng-click="register()" class="btn waves-effect waves-light green" type="submit" name="action">Register
-				<i class="material-icons left">send</i></button>
-			</div>
+				<i class="material-icons left">send</i>
+			</button>
 		</div>
-		<div class="row">
-			<div>
-				<table class=" highlight">
-					<thead>
-						<th>Username</th>
-						<th>Account</th>
-						<th>Rating</th>
-						<th>Type</th>
-					</thead>
-					<tbody>
-						<tr ng-repeat = " user in all_users | orderBy:['-created_at']">
-							<td>
-								<p ng-bind ='user.username'></p>
-							</td>
-							<td><p ng-bind ='user.account'></p></td>
-							<td><p ng-bind ='user.rating'></p></td>
-							<td><p ng-bind ='user.type'></p></td>
-						</tr> 
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div>		
+	</div>
+</div>		

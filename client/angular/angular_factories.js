@@ -52,6 +52,17 @@ appointments.factory('ProductFactory', function($http){
 			callback(output);
 		});
 	}
+	factory.get_all_category = function(callback){
+		$http.get('/get_all_category').success(function(output){
+			callback(output);
+		});
+	}
+	factory.rate_product = function(product){
+		console.log("rate thithit");
+		$http.post('/rate_product',product).success(function(output){
+			console.log(output);
+		});
+	}
 	// <----------------| END || POSTS |------------------------->
 	return factory;
 });
@@ -65,6 +76,17 @@ appointments.factory('OrderFactory', function($http){
 			callback(output);
 		});
 	};
+	factory.add_bid_order = function(orderInfo,callback){
+		$http.post('/add_bid_order',orderInfo).success(function(output){
+			console.log("add_order Success in factory");
+			callback(output);
+		});
+	};
+	factory.add_to_product_bidding_list = function(bidInfo,callback){
+		$http.post('/add_to_product_bidding_list',bidInfo).success(function(output){
+			callback(output);
+		});
+	};
 	factory.get_order_by_user = function(id,callback){
 		$http.get('/get_order_by_user/'+id).success(function(output){
 			callback(output);
@@ -72,6 +94,11 @@ appointments.factory('OrderFactory', function($http){
 	};
 	factory.get_user_selling = function(id,callback){
 		$http.get('/get_user_selling/'+id).success(function(output){
+			callback(output);
+		});
+	};
+	factory.completeOrder = function(order,callback){
+		$http.post('/completeOrder/'+order._id).success(function(output){
 			callback(output);
 		});
 	};

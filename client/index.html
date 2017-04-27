@@ -14,6 +14,8 @@
 	<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular-route.min.js"></script>
 	<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular-resource.min.js"></script>
 
+	
+
 	<script type="text/javascript" src="angular/app.js"> </script>
 	<script type="text/javascript" src="angular/angular_factories.js"> </script>
 	<script type="text/javascript" src="angular/angular_controllers/home.js"> </script>
@@ -24,15 +26,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </script>
 <style type="text/css">
-	body{
-		background-image: url("../img/bk.jpg");
+	#logo{
+		width: 60;
+		height: 60;
 	}
-	
 </style>
 </head>
 <body ng-app="appointments">
 	<nav class="N/A transparent" id="navbar">
-		<a href="/" class="brand-logo"></a>
+		<a href="#/home" class="brand-logo"><img src="./img/logo.png" id="logo"></a>
 		<ul class="right hide-on-med-and-down">
 			<span ng-show="!currentUser">
 				<li><a href="#/register">Register</a></li>

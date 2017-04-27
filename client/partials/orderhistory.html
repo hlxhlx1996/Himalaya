@@ -1,7 +1,12 @@
+<style type="text/css">
+	#selectRating{
+		display: block;
+	}
+</style>
 <div id="orderHistory" ng-controller="MyPageController" class="container">
 	<h3>Order History</h3>
 	<div class="row">
-		<div class="col s12 m9" ng-repeat = "order in orders | orderBy:['-created_at']">
+		<div class="col s12 m12" ng-repeat = "order in orders | orderBy:['-created_at']">
 			<div class="card blue-grey">
 				<div class="card-content white-text">
 					<p>Status: {{order.status}}</p>
@@ -11,16 +16,24 @@
 								<th>Product Name</th>
 								<th>Quantity</th>
 								<th>Supplier</th>
+								<th>Rate this product</th>
 							</thead>
 							<tbody>
 								<tr ng-repeat = " product in order.products_info | orderBy:['-created_at']">
 									<td><p ng-bind ='product.pname'></p></td>
 									<td><p ng-bind ='product.quantity'></p></td>
 									<td><p ng-bind ='product.sname'></p></td>
+									<td ><select ng-model="product.rating" class="col s7"  id="selectRating">     
+										<option ng-repeat='num in rating' value="{{num}}">{{num}}</option>
+									</select>
+									<button onclick="Materialize.toast('Rate Success', 4000)" class="btn" ng-click="rate_product(product)">Rate</button></td>
 								</tr> 
 							</tbody>
 						</table>
 					</div>
+				</div>
+				<div class="card-action">
+					<a class="btn green" ng-click="completeOrder(order)" ng-show="order.status!='complete'">Complete</a>
 				</div>
 			</div>
 		</div>

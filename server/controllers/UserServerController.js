@@ -1,6 +1,10 @@
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
+var Card = mongoose.model('Card');
 
+var add_card = function(id, card){
+
+}
 module.exports = (function() {
 	return{
 	user_register: function(req, res){
@@ -11,6 +15,15 @@ module.exports = (function() {
 				console.log('route-reg2',user);
 			}//ends if
 			else {
+				// var cardInfo = req.body.card;
+				// req.body.card = 0;
+				// var userInfo = {
+				// 	username:req.body.username,
+				// 	account:req.body.account,
+				// 	phone:req.body.phone,
+				// 	age:req.body.age,
+				// 	password:req.body.password
+				// } 
 				console.log("user name not found create new");
 				var newUser = User(req.body);
 				newUser.save(function(err,data){
@@ -18,7 +31,6 @@ module.exports = (function() {
     					console.log('Error');
     				} else {
     					res.json(data);
-    					console.log("success");
     				}
 				});
 			}//ends else
@@ -31,6 +43,7 @@ module.exports = (function() {
 				res.send(err);
 			} else {
 				// console.log("find user by name ",results);
+				// results.exp_date =
 				res.json(results);
 			}
 		});

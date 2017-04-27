@@ -1,29 +1,33 @@
-<div class="row container" ng-controller="ProfileController">
+<style type="text/css">
+	body{
+		background: linear-gradient(rgba(0, 0, 0, 0.50), rgba(0, 0, 0, 0.50)),
+		rgba(0,0,0,0.50) url('../img/candy.jpg') no-repeat center;
+		background-size: cover;
+		/*background-image: url("../img/bk.jpg");*/
+		/*opacity: 0.8;*/
+	}
+	
+</style>
+<div id="login" class="row container" ng-controller="ProfileController">
 	<h2 class="center" id="regText2">Welcome to 5C</h2>
-	<div class="row " id="loLogin">
-		<div class="col s5 offsets4">
-		<div class="card">
-				<div class="card-content">
-					<h3 class="center card-title">Login</h3>
-					<div class="input-field">	
+	<div class="row white-text" id="loLogin">
+					<div class="col s6">
 
-						<i class="material-icons prefix">account_circle</i>
-						<input id='uname' type="text" ng-model="old_friend.username">
-						<label for='uname'>User Name</label>
-					</div>
-
-					<div class="input-field">
-						<i class="material-icons prefix">lock</i>
-						<input id='upass' type="password" ng-model="old_friend.password">
-						<label for='upass'>Password</label>
-					</div>
-					<div class="input-field">
-						<button onclick="Materialize.toast('Welcome Local User', 4000)" ng-click="login()" class="btn waves-effect waves-light green" type="submit" name="action">Login
-							<i class="material-icons left">send</i>
-						</button>
+						<div class="input-field">	
+							<i class="material-icons prefix">account_circle</i>
+							<input id='uname' type="text" ng-model="old_friend.username" placeholder="username">
+						</div>
+						<div class="input-field">
+							<i class="material-icons prefix">lock</i>
+							<input class="white-text" placeholder="password" id='upass1' type="password" ng-model="old_friend.password">
+						</div>
+						<div class="input-field">
+							<button onclick="Materialize.toast('Welcome Local User', 4000)" ng-click="login()" class="btn waves-effect waves-light green" type="submit" name="action">Login
+								<i class="material-icons left">send</i>
+							</button>
+							{{loginM}}
+						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-	</div><!--ends row -->
+			</div><!--ends row -->
 </div><!--ends row friendcontroller -->
